@@ -15,8 +15,8 @@ where $\rho(x, y, t)$ represents the temperature. The Dirchlet boundary conditio
 </p>
 <p float="left">
 <p align="middle">
-  <img src="images/heat_diffusion_3D_1.gif" width="49%"/>
-  <img src="images/heat_diffusion_3D_2.gif" width="49%"/> 
+  <img src="images/heat_diffusion_3D_1.gif" width="49.6%"/>
+  <img src="images/heat_diffusion_3D_2.gif" width="49.6%"/> 
 </p>
 
 It is evident from animations that the diffusion process slows down until it converges to a stationary configuration.
@@ -38,7 +38,7 @@ Instability occurs for $\frac{D dt}{h^2} > 0.35$, and it leads to catastrophic e
 
 ## Implicit Euler <a name="implicit"></a>
 The approach is the same as above but second order partial derivatives are evaluated at $t=t_{n+1}$, thus making the method implicit. We can write:
-$$(1+4\frac{D dt}{h^2})\,\rho_{i,j}^{n+1} - \frac{D dt}{h^2}\,(\rho_{i+1,j}^{n+1} + \rho_{i-1,j}^{n+1} + \rho_{i,j+1}^{n+1} + \rho_{i,j-1}^{n+1}) = \rho_{i,j}^n$$
+$$(1+4\frac{D dt}{h^2})\rho_{i,j}^{n+1} - \frac{D dt}{h^2}(\rho_{i+1,j}^{n+1} + \rho_{i-1,j}^{n+1} + \rho_{i,j+1}^{n+1} + \rho_{i,j-1}^{n+1}) = \rho_{i,j}^n$$
 or introducing the $N^2 \times N^2$ matrix $M$:
 $$M \cdot \rho^{n+1} = \rho^n \implies \rho^{n+1} = M^{-1} \cdot \rho^n$$
 This method remains stable as $dt$ gets larger, but the necessity to store in memory the matrix $M$ is a significant bottleneck (for $N=200$ over 12GB of RAM are required assuming double precision). Fortunately the above equation can also be solved iteratively by methods such as *Jacobi* or *Gauss-Seidel*. <br>
