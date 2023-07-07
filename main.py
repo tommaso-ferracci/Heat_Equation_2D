@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 from heat_diffusion_class import heat_diffusion
 from heat_diffusion_class import unstable_heat_diffusion
 
-plt.style.use('science')
+plt.style.use("default")
+plt.rc("text", usetex=True)
+plt.rc("font", family="cm")
+plt.rcParams["grid.color"] = (0.5, 0.5, 0.5, 0.2)
   
 hd = heat_diffusion(L=1, R=0.3, D=1, dt=6e-5, N=100, n=1601, T1=20, T2=30)
 hd.implicit_euler()

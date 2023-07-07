@@ -138,6 +138,7 @@ class heat_diffusion:
         anim.save(f'images/heat_diffusion_3D_{id}.gif', writer=PillowWriter(fps=20))
 
 
+# this class is used only to show what happens to an unstable explicit propagator
 class unstable_heat_diffusion(heat_diffusion):  
     def explicit_euler(self): # override without instability check
         self.rho[0, :, 1:] = self.T1
@@ -154,4 +155,3 @@ class unstable_heat_diffusion(heat_diffusion):
                     if (i*self.h < self.L/2 - self.R/2) or (i*self.h > self.L/2 + self.R/2) or (j*self.h < self.L/2 - self.R/2) or (j*self.h > self.L/2 + self.R/2):
                         self.rho[i, j, t+1] = self.rho[i, j, t] + self.D/self.h**2 * (self.rho[i+1, j, t] + self.rho[i-1, j, t] 
                                             + self.rho[i, j+1, t] + self.rho[i, j-1, t] - 4*self.rho[i, j, t]) * self.dt
- 
