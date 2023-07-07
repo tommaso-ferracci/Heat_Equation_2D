@@ -5,7 +5,10 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.animation import FuncAnimation, PillowWriter
 
-plt.style.use('science')
+plt.style.use("default")
+plt.rc("text", usetex=True)
+plt.rc("font", family="cm")
+plt.rcParams["grid.color"] = (0.5, 0.5, 0.5, 0.2)
 
 class heat_diffusion:
     def __init__(self, L, R, D, dt, N, n, T1, T2):
@@ -89,7 +92,7 @@ class heat_diffusion:
         contour = ax.contourf(X, Y, self.rho[:, :, t], cmap=cm.coolwarm)
         cbar = fig.colorbar(contour, ax=ax, shrink=1.0, aspect=5)
         cbar.set_label('T', rotation=0, labelpad=12)
-        fig.savefig(f'images/heat_diffusion_2D_{id}.png')
+        fig.savefig(f'images/heat_diffusion_2D_{id}.png', dpi=300, bbox_inches="tight", pad_inches=0.2)
 
 
     def plot_3D(self, id, t=0):
@@ -103,11 +106,11 @@ class heat_diffusion:
         surface = ax.plot_surface(X, Y, self.rho[:, :, t], rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=0, antialiased=False)
         cbar = fig.colorbar(surface, ax=ax, shrink=0.5, aspect=5)
         cbar.set_label('T', rotation=0, labelpad=12)
-        fig.savefig(f'images/heat_diffusion_3D_{id}.png')
+        fig.savefig(f'images/heat_diffusion_3D_{id}.png', dpi=300, bbox_inches="tight", pad_inches=0.3)
 
 
     def animation_2D(self, id):
-        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,7))
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,7), dpi=200)
         X, Y = np.meshgrid(np.linspace(0, self.L, self.N), np.linspace(0, self.L, self.N))
 
         def animate(t):
@@ -122,7 +125,7 @@ class heat_diffusion:
 
 
     def animation_3D(self, id):
-        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10,9), subplot_kw={"projection": "3d"})
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10,9), subplot_kw={"projection": "3d"}, dpi=200)
         X, Y = np.meshgrid(np.linspace(0, self.L, self.N), np.linspace(0, self.L, self.N))
 
         def animate(t):

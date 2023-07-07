@@ -1,4 +1,4 @@
-# 2D heat diffusion with explicit and implicit methods
+# 2D Heat Equation with Explicit and Implicit Methods
 The purpose of this project is to simulate a 2D heat diffusion process in a square simulation cell given Dirichlet boundary conditions. Both explicit and implicit Euler methods are implemented and discussed. More specifically, explicit Euler becomes unstable for large timesteps while implicit Euler is limited to small grids because of limited memory. Suggestions on possible improvements are then proposed. 
 
 ## Table of contents
